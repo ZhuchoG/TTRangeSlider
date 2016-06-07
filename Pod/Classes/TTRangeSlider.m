@@ -367,21 +367,21 @@ static const CGFloat kLabelsFontSize = 12.0f;
 
     if (self.leftHandleSelected)
     {
-        if (selectedValue < self.selectedMaximum){
+        if (selectedValue < self.selectedMaximum - self.step){
             self.selectedMinimum = selectedValue;
         }
         else {
-            self.selectedMinimum = self.selectedMaximum;
+            self.selectedMinimum = self.selectedMaximum - self.step;
         }
 
     }
     else if (self.rightHandleSelected)
     {
-        if (selectedValue > self.selectedMinimum || (self.disableRange && selectedValue >= self.minValue)){ //don't let the dots cross over, (unless range is disabled, in which case just dont let the dot fall off the end of the screen)
+        if (selectedValue > self.selectedMinimum + self.step || (self.disableRange && selectedValue >= self.minValue)){ //don't let the dots cross over, (unless range is disabled, in which case just dont let the dot fall off the end of the screen)
             self.selectedMaximum = selectedValue;
         }
         else {
-            self.selectedMaximum = self.selectedMinimum;
+            self.selectedMaximum = self.selectedMinimum + self.step;
         }
     }
 
